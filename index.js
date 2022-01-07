@@ -27,14 +27,18 @@ function onRemove(event) {
     var index_ok = index.replace("ok_", ""); 
     var input_text = document.getElementById(`input_${index_ok}`);
     var todo_text = document.getElementById(`todo_text_${index_ok}`); 
-    listofTodo[Number(index_ok)] = input_text.value; 
-    todo_text.innerText = `${Number(index_ok) + 1}. ${input_text.value}`;
-    document
-      .getElementById(`edit_input_${index_ok}`)
-      .setAttribute("hidden", "true");
-    document
-      .getElementById(`edit_button_${index_ok}`)
-      .removeAttribute("hidden");
+    if (input_text.value.length > 1){
+      listofTodo[Number(index_ok)] = input_text.value; 
+      todo_text.innerText = `${Number(index_ok) + 1}. ${input_text.value}`;
+      document
+        .getElementById(`edit_input_${index_ok}`)
+        .setAttribute("hidden", "true");
+      document
+       .getElementById(`edit_button_${index_ok}`)
+       .removeAttribute("hidden");
+       } else {
+         alert("Введите больше одного символа");
+       }
   } else if (index.includes("delete_")) {
     var index_delete = index.replace("delete_", "");
     listofTodo.splice(index_delete, 1);
