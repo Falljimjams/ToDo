@@ -43,6 +43,14 @@ function onRemove(event) {
     var index_delete = index.replace("delete_", "");
     listofTodo.splice(index_delete, 1);
     document.getElementById(`todo_${index_delete}`).remove(); 
+  } else if (index.includes("cancle_")) {
+      var index_cancle = index.replace("cancle_", "");
+      document
+        .getElementById(`edit_input_${index_cancle}`)
+        .setAttribute("hidden", "true");
+      document
+       .getElementById(`edit_button_${index_cancle}`)
+       .removeAttribute("hidden");
   } else {
     console.log(event);
   }
@@ -73,6 +81,7 @@ input.onkeyup = function (event) {
 <div hidden='true', id='edit_input_${index}', style='float: left;'>
 <input id='input_${index}' />
 <button data-id=ok_${index}>ok</button>
+<button data-id=cancle_${index}>cancle</button>
 </div>
 </div>
 </br>
