@@ -9,10 +9,10 @@ const KEYBOARD_KEY__ENTER = "Enter";
 const listofTodo = [];
 
 function onRemove(event) {
-    console.timeLog("> onRemove -> event", event.target.dataset.index);
-    const index = event.target.dataset.index;
+    console.timeLog("> onRemove -> event", event.target.dataset.id);
+    const index = event.target.dataset.id;
     listofTodo.splice(index, 1);
-    document.getElementById(`todo_${index}`);
+    document.getElementById(`todo_${index}`).remove();
 }
 input.onkeyup = function(event) {
     console.log(">onkeyup -> event", event);
@@ -30,7 +30,7 @@ input.onkeyup = function(event) {
                     return `
 <div id='todo_${index}'>
 <button data-id = '${index}'>x</button>
-<span>${index + 1}. $ {value}</span>
+<span>${index + 1}. ${value}</span>
 </div>
 `;
                 })
