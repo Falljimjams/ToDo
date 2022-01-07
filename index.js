@@ -9,6 +9,7 @@ const KEYBOARD_KEY__ENTER = "Enter";
 const listofTodo = [];
 
 function onRemove(event) {
+  console.log("Сначала", listofTodo);
   console.log("> onRemove -> event", event.target.dataset.id);
   const index = event.target.dataset.id;
 
@@ -43,6 +44,30 @@ function onRemove(event) {
     var index_delete = index.replace("delete_", "");
     listofTodo.splice(index_delete, 1);
     document.getElementById(`todo_${index_delete}`).remove(); 
+    
+      output.innerHTML = listofTodo
+        .map((value, index) => {
+          console.log("> listOfTodo -> map", index, value);
+          return `
+<div id='todo_${index}'>
+<div style='float: left;'>
+<button data-id='delete_${index}'>x</button>
+</div>
+<div id='todo_text_${index}', style='float: left;'>${index + 1}. ${value}</div>
+<div style='float: left;', id='edit_button_${index}'>
+<button data-id=edit_${index}>edit</button>
+</div>
+<div hidden='true', id='edit_input_${index}', style='float: left;'>
+<input id='input_${index}' />
+<button data-id=ok_${index}>ok</button>
+<button data-id=cancle_${index}>cancle</button>
+</div>
+</div>
+</br>
+`;
+        })
+        .toString();
+    
   } else if (index.includes("cancle_")) {
       var index_cancle = index.replace("cancle_", "");
       document
@@ -54,6 +79,7 @@ function onRemove(event) {
   } else {
     console.log(event);
   }
+  console.log("После", listofTodo);
 }
 
 input.onkeyup = function (event) {
