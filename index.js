@@ -31,6 +31,7 @@ input.onkeyup = function(event) {
 <div id='todo_${index}'>
 <button data-id = '${index}'>x</button>
 <span>${index + 1}. ${value}</span>
+<button data-id=edit_${index}>edit</button>
 </div>
 `;
                 })
